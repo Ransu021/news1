@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Awesome Picture Holder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .hero-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: brightness(0.8);
+        }
+        .hero-image:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1) saturate(1.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: opacity 0.5s ease;
+            opacity: 1;
+        }
+        .overlay:hover {
+            opacity: 0.8;
+        }
+        .parallax {
+            animation: parallax 10s linear infinite;
+        }
+        @keyframes parallax {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-50px); }
+        }
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .floating-particles {
+            position: absolute;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.5)"/></svg>') repeat;
+            animation: float 15s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); }
+        }
+        @media (max-width: 768px) {
+            .overlay {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container fade-in">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/27a8320a-d451-4120-87fe-ec43728b2a8d.png" alt="Majestic mountain landscape with snow-capped peaks, flowing rivers, lush green forests, and vibrant wildflowers under a bright blue sky during golden hour sunset in a serene alpine valley" class="hero-image parallax" />
+        <div class="floating-particles"></div>
+        <div class="overlay">
+            <div>
+                <h1>Welcome to Nature's Vista</h1>
+                <p>Experience the breathtaking beauty of the wilderness.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple interaction to enhance the effect
+        document.querySelector('.hero-image').addEventListener('click', function() {
+            this.style.animationPlayState = this.style.animationPlayState === 'paused' ? 'running' : 'paused';
+        });
+
+        // Add dynamic resize handling for responsiveness
+        window.addEventListener('resize', function() {
+            document.querySelector('.hero-image').style.height = window.innerHeight + 'px';
+        });
+
+        // Initialize height on load
+        window.addEventListener('load', function() {
+            document.querySelector('.hero-image').style.height = window.innerHeight + 'px';
+        });
+    </script>
+</body>
+</html>
+</content>
+</create_file>
